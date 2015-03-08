@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Spot your Location</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<!--[if IE 7]>
+			<link rel="stylesheet" href="css/ie7.css" type="text/css">
+		<![endif]-->
+        
+        <script language="javascript">
+
+var cityValue;
+
+var city_arr = new Array();
+city_arr[0] = new Array("-Select Area-");
+city_arr[1] = new Array("-Select Area-","Guindy","Thiruvanmiyur");
+city_arr[2] = new Array("-Select Area-","Sarojini Nagar","Chanakyapuri");
+
+var chennai_city_arr = new Array();
+chennai_city_arr[0] = new Array("-Select Locality-");
+chennai_city_arr[1] = new Array("-Select Locality-","Bus Stand","Railway Station");
+chennai_city_arr[2] = new Array("-Select Locality-","Bus Stand","Railway Station");
+
+var delhi_city_arr = new Array();
+delhi_city_arr[0] = new Array("-Select Locality-");
+delhi_city_arr[1] = new Array("-Select Locality-","Market","Railway Station");
+delhi_city_arr[2] = new Array("-Select Locality-","Railway Station","Yashwant Place Mall");
+
+
+function stateChange(City)
+ {
+  cityValue = City.value;
+  document.forms["myForm"].elements["Area"].options.length=0;
+   for (var i=0;i<city_arr[cityValue].length;i++)
+   {
+      var option = document.createElement("option");
+      option.setAttribute('value',i);
+      option.innerHTML = city_arr[cityValue][i];
+      document.forms["myForm"].elements["Area"].appendChild(option);
+   }
+ }
+function areaChange(Area)
+{
+	var areaValue = Area.value;
+	document.forms["myForm"].elements["Locality"].options.length=0;
+
+	if(cityValue==1 && areaValue==1){
+		for (var i=0;i<chennai_city_arr[areaValue].length;i++)
+		  {
+		   var option = document.createElement("option");
+		   option.setAttribute('value',i);
+		   option.innerHTML = chennai_city_arr[areaValue][i];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+		  }
+	}
+	else if(cityValue==1 && areaValue==2){
+             var option = document.createElement("option");
+		   option.setAttribute('value',0);
+		   option.innerHTML = chennai_city_arr[areaValue][0];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+                   var j =2;
+		for (i=1;i<chennai_city_arr[areaValue].length;i++)
+		  {
+		   var option = document.createElement("option");
+                   
+		   option.setAttribute('value',++j);
+		   option.innerHTML = chennai_city_arr[areaValue][i];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+		  }
+	}
+        else if(cityValue==2 && areaValue==1){
+             var option = document.createElement("option");
+		   option.setAttribute('value',0);
+		   option.innerHTML = delhi_city_arr[areaValue][0];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+                   var j =4;
+		for (i=1;i<delhi_city_arr[areaValue].length;i++)
+		  {
+		   var option = document.createElement("option");
+                   
+		   option.setAttribute('value',++j);
+		   option.innerHTML = delhi_city_arr[areaValue][i];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+		  }
+	}
+        else if(cityValue==2 && areaValue==2){
+             var option = document.createElement("option");
+		   option.setAttribute('value',0);
+		   option.innerHTML = delhi_city_arr[areaValue][0];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+                   var j =6;
+		for (i=1;i<delhi_city_arr[areaValue].length;i++)
+		  {
+		   var option = document.createElement("option");
+                   
+		   option.setAttribute('value',++j);
+		   option.innerHTML = delhi_city_arr[areaValue][i];
+		   document.forms["myForm"].elements["Locality"].appendChild(option);
+		  }
+	}
+}
+function validateForm() {
+    var x = document.forms["myForm"]["Area"].value;
+    var y = document.forms["myForm"]["Locality"].value;
+    if (x == null || x == "0") {
+        alert("Area must be filled out");
+        return false;
+    }
+    if(y==null || y=="0"){
+        alert("Locality must be filled out");
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+	<div class="page">
+		<div class="header">
+			<div>
+				<a href="index.html" id="logo"><img src="images/modified_4.jpg" alt="logo" height="50" width="200"></a>
+				<ul>
+					<li>
+						<a href="index.html">Home</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div class="body">
+                    <form name="myForm" method="post" action="loadMap" onsubmit="return validateForm()">
+			<div>
+                            <center>
+				<div>
+					<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+						
+                                                    <h2>Spot your City:</h2>
+                                                
+                                               
+                                                    <select required name="City" onchange="stateChange(this);">
+                                                     <option value="">-Select City-</option>
+                                                     <option value="1">Chennai</option>
+                                                     <option value="2">New Delhi</option>
+                                                    </select>
+						<br/>
+                                                <br/>
+						
+							<h2>Spot your Area:</h2>
+                                                        <select name="Area" onchange="areaChange(this);">
+                                                        </select>
+                                                        
+						<br/>
+                                                <br/>
+							<h2>Spot your Locality:</h2>
+                                                        <select name="Locality">
+                                                        </select>
+                                                        <br/>
+                                                <br/>
+                                                        
+					
+                                                    <input type="submit" value="submit"/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+				</div>
+                            </center>
+			</div>
+			
+                    </form>
+		</div>
+				<div class="footer">
+			<div>
+
+				<p class="footnote">&#169; Copyright &#169; 2011. Go Safe. All rights reserved</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
